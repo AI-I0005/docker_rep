@@ -17,5 +17,5 @@ jobs:
         run:  docker build -t 365docker/training/custom_image:latest: -f dockerfile .
       - name: docker tag name
         run:  docker tag custom_image:latest 365docker/custom_image:latest
- 
-
+      - name: push docker image to dockerhub
+        run:  docker push 365docker/custom_image:latest
