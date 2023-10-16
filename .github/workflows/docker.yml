@@ -1,21 +1,29 @@
 name: docker image
+
 on:
-work_diapatch:
-push:
-  branches:
-    - dev
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+
 jobs:
   push_to_registry:
-    name: push docker image to docker hub
-    runs-on: linux
+    name: Push Docker image to Docker Hub
+    runs-on: ubuntu-latest
+
     steps:
-      - name: check out repo
+      - name: Check out repo
         uses: actions/checkout@v2
-      - name: login in dockerhub
-        run : docker login -u ${{secrets.DOC_USERNAME}} -p ${{secrets.DOC_PASSWORD}}
-      - name: build docker image 
-        run:  docker build -t 365docker/training/custom_image:latest: -f dockerfile .
-      - name: docker tag name
-        run:  docker tag custom_image:latest 365docker/custom_image:latest
-      - name: push docker image to dockerhub
-        run:  docker push 365docker/custom_image:latest
+
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOC_USERNAME }} -p ${{ secrets.DOC_PASSWORD }}
+
+      - name: Build Docker image
+        run: docker build -t 365docker/training/custom_image:latest -f Dockerfile .
+
+      - name: Tag Docker image
+        run: docker tag 365docker/training/custom_image:latest 365docker/custom_image:latest
+
+      - name: Push Docker image to Docker Hub
+        run: docker push 365docker/custom_image:latest
+
