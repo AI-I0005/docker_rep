@@ -44,7 +44,7 @@ jobs:
       - name: Build & push Docker image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: 365docker/training
+          image: 365docker / training
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.DOC_USERNAME }}
