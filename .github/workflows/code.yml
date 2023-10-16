@@ -1,6 +1,7 @@
 name: flask_app
 
-on:
+on:[workflow_dispatch]
+
   pull_request:
     branches:
       - master
@@ -10,10 +11,12 @@ on:
 
 jobs:
   test:
-    runs-on: linux
+    runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: ./app/
+
     strategy:
       matrix:
         python-version: [3.8]
@@ -31,22 +34,4 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Test app code
-        run: python ./flak_app.py
-
-  build_and_push_docker:
-    runs-on: linux
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v3
-
-      - name: Build & push Docker image
-        uses: mr-smithers-excellent/docker-build-push@v6
-        with:
-          image: 365docker / training
-          registry: docker.io
-          dockerfile: Dockerfile
-          username: ${{ secrets.DOC_USERNAME }}
-          password: ${{ secrets.DOC_PASSWORD }}
 
