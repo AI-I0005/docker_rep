@@ -11,11 +11,11 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: linux
 
     defaults:
       run:
-        working-directory: ./app/
+        working-directory: ./
 
     strategy:
       matrix:
