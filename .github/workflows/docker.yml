@@ -1,0 +1,20 @@
+name: docker image
+on:
+work_diapatch:
+push:
+  branches:
+    - dev
+jobs:
+  push_to_registry:
+    name: push docker image to docker hub
+    runs-on: linux
+    steps:
+      - name: check out repo
+        uses: actions/checkout@v2
+      - name: login in dockerhub
+        run : docker login -u ${{secrets.DOC_USERNAME}} -p ${{secrets.DOC_PASSWORD}}
+      - name: build docker image 
+        run:  docker build -t 365docker/training/custom_image:latest: -f dockerfile .
+     
+
+
