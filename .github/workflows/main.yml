@@ -35,3 +35,18 @@ jobs:
       - name: Test app code
         run: python ./flak_app.py
 
+  build_and_push_docker:
+    runs-on: linux
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Build & push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: 365docker/training
+          registry: docker.io
+          dockerfile: Dockerfile
+          username: ${{ secrets.DOC_USERNAME }}
+          password: ${{ secrets.DOC_PASSWORD }}
+
