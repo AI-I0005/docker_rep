@@ -22,7 +22,7 @@ jobs:
         run: docker build -t 365docker/training:late -f Dockerfile .
 
       - name: Tag Docker image
-        run: docker tag 365docker/training:latest 365docker/training:late
+        run: docker tag 365docker/training:late 365docker/training:late
 
       - name: Push Docker image to Docker Hub
         run: docker push 365docker/training:late
