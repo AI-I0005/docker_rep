@@ -32,5 +32,6 @@ jobs:
 
       - name: SSH into EC2 and run Docker command
         run: |
-        docker run -d -p 5000:5000 --name my-container 365docker/training:late
+          docker run -d -p 5000:5000 --name my-container 365docker/training:late
         if: success()
+
