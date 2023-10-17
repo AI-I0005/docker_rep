@@ -27,11 +27,12 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push 365docker/training:late
 
-      - name: pull docker from the docker hub
-        run:  docker pull 365docker/training:late 
+      - name: Pull Docker image from Docker Hub
+        run: docker pull 365docker/training:late
 
-      - name: run the docker image in ec2
-        run:  |
-          echo "your-base64-encoded-private-key" | base64 --decode > docker.pem
-          ssh -o StrictHostKeyChecking=no -i docker.pem ec2-user@*** 'sudo docker run -d -p 5000:5000 --name tom_container ***/training:late'
+      - name: Decode and save the key
+        run: echo "your-base64-encoded-key" | base64 --decode > docker.pem
+
+      - name: SSH into EC2 and Run Docker Container
+        run: ssh -o StrictHostKeyChecking=no -i docker.pem ec2-user@*** 'sudo docker run -d -p 5000:5000 --name tom_container ***/training:late'
 
