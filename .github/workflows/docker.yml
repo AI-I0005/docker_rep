@@ -32,6 +32,6 @@ jobs:
 
       - name: run the docker image in ec2
         run:  |
-           echo "${{ secrets.SSH_KEY }}" | base64 --decode > docker.pem
-           ssh -o StrictHostKeyChecking=no -i docker.pem ec2-user@${{ secrets.EC2_INSTANCE_IP }} 'sudo docker run -d -p 5000:5000 --name tom_container 365docker/training:late'
+          echo "***" | base64 --decode > docker.pem
+          ssh -o StrictHostKeyChecking=no -i docker.pem ec2-user@*** 'sudo docker run -d -p 5000:5000 --name tom_container ***/training:late'
 
