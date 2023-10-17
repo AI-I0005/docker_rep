@@ -29,3 +29,6 @@ jobs:
 
       - name: pull docker from the docker hub
         run:  docker pull 365docker/training:late 
+
+      - name: run the docker image in ec2
+        run:  docker run -d -p 5000:5000 --name custom_container 365docker/training:late
