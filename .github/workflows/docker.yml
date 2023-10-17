@@ -27,3 +27,5 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push 365docker/custom_image:latest
 
+      - name: pull docker from the docker hub
+        run:  docker pull 365docker/training:late 
