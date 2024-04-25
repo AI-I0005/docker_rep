@@ -1,0 +1,23 @@
+name: Test Deployment
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  test-deployment:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check SSH Connection
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: 22
+          script: |
+            echo "SSH connection successful"
+            uname -a
